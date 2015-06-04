@@ -62,7 +62,7 @@ gulp.task('config', function() {
             name: moduleName,
             constants: envConfig.constants,
             stream: true,
-            template: "/* tslint:disable */\n\n((): void => { angular.module('<%- moduleName %>')<% constants.forEach(function(constant) { %>.constant('<%- constant.name %>', <%= constant.value %>)<% }) %>; })();"
+            template: "/* tslint:disable */\r\n\r\n((): void => { angular.module('<%- moduleName %>')<% constants.forEach(function(constant) { %>.constant('<%- constant.name %>', <%= constant.value %>)<% }) %>; })();"
         })
         .pipe(rename('app.constants.ts'))
         .pipe(gulp.dest('app/core/'));
@@ -140,7 +140,7 @@ gulp.task('typescript', ['tslint'], function() {
             gulpWarnings: true
         }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('.tmp/'));
+        .pipe(gulp.dest('.tmp/scripts/'));
 
     return jsResult;
     /*
@@ -166,7 +166,7 @@ function sassStream() {
         }))
         .pipe(concat('app.css'))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('.tmp/'));
+        .pipe(gulp.dest('.tmp/styles/'));
 }
 
 gulp.task('sass', function() {
@@ -374,8 +374,8 @@ var browserSyncOptions = {
         index: 'index.html',
         routes: {
             '/bower_components': 'bower_components',
-            '/styles': '.tmp',
-            '/scripts': '.tmp',
+            '/styles': '.tmp/styles',
+            '/scripts': '.tmp/scripts',
             '/node_modules': 'node_modules'
         }
     },
