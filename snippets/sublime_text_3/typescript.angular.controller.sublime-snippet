@@ -1,0 +1,28 @@
+<snippet>
+    <content><![CDATA[/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/app.d.ts" />
+
+module ${1:module} {
+    'use strict';
+
+    export class ${2:CtrlName}Controller {
+
+        /* @ngInject */
+        constructor(public \$log: angular.ILogService, \$scope: angular.IScope) {
+			
+			/*
+			let destroyWatch = \$scope.\$on('\$destroy', function() {
+				// cleanup any timeouts etc
+				destroyWatch();
+			});
+			*/
+		}
+		
+    }
+	
+	angular.module('${1:module}')
+        .controller('${2:CtrlName}Controller', ${2:CtrlName}Controller);
+}]]></content>
+    <tabTrigger>tacontroller</tabTrigger>
+    <scope>source.ts</scope>
+</snippet>

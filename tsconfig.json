@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"declaration": false,
+		"module": "commonjs",
+		"target": "es5",
+		"charset": "utf-8",
+		"noImplicitAny": false,
+		"noLib": false,
+		"noResolve": false,
+		"out": "app.js",
+		"outDir": ".tmp",
+		"sourceMap": true
+	}
+}

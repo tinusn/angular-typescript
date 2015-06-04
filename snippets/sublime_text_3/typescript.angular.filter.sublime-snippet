@@ -1,0 +1,24 @@
+<snippet>
+    <content><![CDATA[/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/app.d.ts" />
+
+((): void => {
+    angular
+        .module('${1:module}')
+        .filter('${2:filterName}', ${2:filterName});
+
+    /* @ngInject */
+    function ${2:filterName}(\$log: angular.ILogService): any {
+        return function(input) {
+            if (!input) {
+                return input;
+            } else {
+                return input;
+            }
+        };
+    }
+
+})();]]></content>
+    <tabTrigger>tafilter</tabTrigger>
+    <scope>source.ts</scope>
+</snippet>

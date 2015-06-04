@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/app.d.ts" />
+
+((): void => {
+    
+})();]]></content>
+    <tabTrigger>tiife</tabTrigger>
+    <scope>source.ts</scope>
+</snippet>

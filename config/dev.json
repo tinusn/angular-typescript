@@ -1,0 +1,10 @@
+{
+    "constants": {
+        "appConfig": {
+            "baseUrl": "https://dev.short.dk",
+            "debug": true,
+            "apiVersion": "v1"
+        }
+    },
+    "injects": []
+}

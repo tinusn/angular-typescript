@@ -1,0 +1,28 @@
+<snippet>
+    <content><![CDATA[/// <reference path="../../../typings/tsd.d.ts" />
+/// <reference path="../../../typings/app.d.ts" />
+
+((): void => {
+    angular
+        .module('${1:module}')
+        .directive('${2:directiveName}', ${2:directiveName});
+
+    /* @ngInject */
+    function ${2:directiveName}(): any {
+        return {
+            restrict: 'EAC',
+            templateUrl: 'components/template.html',
+            scope: {
+				oneWay: '@',
+                twoWay: '=',
+                outerFunction: '&'
+            },
+            controller: '${3:CtrlName}Controller',
+            controllerAs: '${3:CtrlName}',
+            bindToController: true
+        };
+    }
+})();]]></content>
+    <tabTrigger>tadirective</tabTrigger>
+    <scope>source.ts</scope>
+</snippet>

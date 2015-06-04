@@ -1,0 +1,23 @@
+<snippet>
+    <content><![CDATA[/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../../typings/app.d.ts" />
+
+module ${1:module} {
+    'use strict';
+
+    export class ${2:ServiceName} {
+
+        /* @ngInject */
+        constructor(public \$log: angular.ILogService) {
+
+        }
+
+    }
+
+	angular.module('${1:module}')
+        .service('${2:ServiceName}', ${2:ServiceName});
+
+}]]></content>
+    <tabTrigger>taservice</tabTrigger>
+    <scope>source.ts</scope>
+</snippet>
