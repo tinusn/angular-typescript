@@ -8,7 +8,7 @@
 		"noLib": false,
 		"noResolve": false,
 		"out": "app.js",
-		"outDir": ".tmp",
+		"outDir": ".tmp/scripts",
 		"sourceMap": true
 	}
 }

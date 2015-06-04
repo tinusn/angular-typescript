@@ -196,7 +196,7 @@ gulp.task('fonts', function() {
 });
 
 gulp.task('static', function() {
-    return gulp.src(['app/*.*', '!app/index.html', '!app/*.scss'])
+    return gulp.src(['app/*.*', '!app/index.html'])
         .pipe(gulp.dest('dist/'));
 });
 
@@ -348,16 +348,16 @@ gulp.task('clean', function(cb) {
     rimraf('dist', cb);
 });
 
-gulp.task('build-code', ['minifyindex', 'images', 'fonts', 'static'], function(cb) {
+gulp.task('minify-and-copy', ['minifyindex', 'images', 'fonts', 'static'], function(cb) {
     cb();
 });
 
-gulp.task('build-ts-scss', ['typescript', 'sass'], function() {
-    gulp.start('build-code');
+gulp.task('build-code', ['typescript', 'sass'], function() {
+    gulp.start('minify-and-copy');
 });
 
 gulp.task('build-config', ['config', 'gen-ts-refs'], function() {
-    gulp.start('build-ts-scss');
+    gulp.start('build-code');
 });
 
 gulp.task('build', ['clean'], function() {
