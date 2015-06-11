@@ -21,7 +21,7 @@
         $provide.decorator('$log', logHandler);
 
         // Change to disable #-urls
-        $locationProvider.html5Mode(false);
+        $locationProvider.html5Mode(true);
 
         // The baseUrl for the backend API
         RestangularProvider.setBaseUrl(appConfig.baseUrl + '/api/' + appConfig.apiVersion);
