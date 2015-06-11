@@ -3,7 +3,7 @@
 'use strict';
 
 var args = require('yargs').argv;
-var autoprefixer = require('gulp-autoprefixer');
+var autoprefixer = require('autoprefixer-core');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
 var expect = require('gulp-expect-file');
@@ -21,13 +21,15 @@ var ngHtml2js = require('gulp-ng-html2js');
 var rename = require('gulp-rename');
 var rev = require('gulp-rev');
 var rimraf = require('rimraf');
-var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var tslint = require('gulp-tslint');
 var uglify = require('gulp-uglify');
 var usemin = require('gulp-usemin');
 var util = require('gulp-util');
+var postcss = require('gulp-postcss');
+var cssnext = require('cssnext');
+var cssnano = require('cssnano');
 
 // Define the name used in constants and templates
 var moduleName = 'typescriptApp';
@@ -144,37 +146,43 @@ gulp.task('typescript', ['tslint'], function() {
 
     return jsResult;
     /*
-	var dtsResult = tsResult.dts
-		.pipe(gulp.dest('definitions'));
+    var dtsResult = tsResult.dts
+        .pipe(gulp.dest('definitions'));
 
-	return merge([jsResult, dtsResult]);
-	*/
+    return merge([jsResult, dtsResult]);
+    */
 });
 
 /***********************
- Sass
+ Css
  ***********************/
 
-function sassStream() {
-    return gulp.src('app/**/*.scss')
+var processors = [
+    autoprefixer({
+        browsers: ['last 2 versions']
+    }),
+    cssnext({
+        from: "core"
+    }),
+    cssnano()
+];
+
+function cssStream() {
+    return gulp.src('app/**/*.css')
         .pipe(sourcemaps.init())
-        .pipe(sass())
+        .pipe(postcss(processors))
         .on('error', swallowAndLogError)
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
         .pipe(concat('app.css'))
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('.tmp/styles/'));
 }
 
-gulp.task('sass', function() {
-    return sassStream();
+gulp.task('css', function() {
+    return cssStream();
 });
 
-gulp.task('sass-bs', function() {
-    return sassStream()
+gulp.task('css-bs', function() {
+    return cssStream()
         .pipe(filter('**/*.css'))
         .pipe(browserSync.reload({
             stream: true
@@ -213,7 +221,6 @@ gulp.task('usemin', function() {
                 rev()
             ],
             css: [
-                minifyCss(),
                 rev()
             ],
             jsVendor: [
@@ -352,7 +359,7 @@ gulp.task('minify-and-copy', ['minifyindex', 'images', 'fonts', 'static'], funct
     cb();
 });
 
-gulp.task('build-code', ['typescript', 'sass'], function() {
+gulp.task('build-code', ['typescript', 'css'], function() {
     gulp.start('minify-and-copy');
 });
 
@@ -399,10 +406,10 @@ gulp.task('tunnel', function() {
 });
 
 gulp.task('watch', ['browser-sync'], function() {
-    gulp.watch('app/**/*.scss', {
+    gulp.watch('app/**/*.css', {
         read: false,
         debounceDelay: 200
-    }, ['sass-bs']);
+    }, ['css-bs']);
     gulp.watch('app/**/*.ts', {
         read: false,
         debounceDelay: 200
@@ -413,6 +420,6 @@ gulp.task('watch', ['browser-sync'], function() {
     }, browserSync.reload);
 });
 
-gulp.task('default', ['config', 'gen-ts-refs', 'typescript', 'sass'], function() {
+gulp.task('default', ['config', 'gen-ts-refs', 'typescript', 'css'], function() {
     gulp.start('watch');
 });

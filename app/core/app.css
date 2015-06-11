@@ -1,0 +1,9 @@
+@import "variables.css";
+
+body {
+	background-color: var(--backgroundColor);
+}
+
+body, button, select, html, textarea, input {
+  font-family: var(--fontFamily);
+}

@@ -1,0 +1,6 @@
+@import "variables.css";
+
+#content {
+	background-color: var(--backgroundColor);
+	padding: 20px;
+}
