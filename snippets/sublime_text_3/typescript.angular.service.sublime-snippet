@@ -5,7 +5,6 @@
 module ${1:module} {
     'use strict';
 
-    @Service
     export class ${2:ServiceName} {
 
         /* @ngInject */
@@ -14,6 +13,9 @@ module ${1:module} {
         }
 
     }
+
+	angular.module('${1:module}')
+        .service('${2:ServiceName}', ${2:ServiceName});
 
 }]]></content>
     <tabTrigger>taservice</tabTrigger>

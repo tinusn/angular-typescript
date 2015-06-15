@@ -4,7 +4,6 @@
 module typescriptApp {
     'use strict';
 
-    @Service
     export class serviceName {
 
         /* @ngInject */
@@ -13,5 +12,8 @@ module typescriptApp {
         }
 
     }
+
+	angular.module('typescriptApp')
+        .service('serviceName', serviceName);
 
 }
