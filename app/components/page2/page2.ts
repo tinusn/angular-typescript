@@ -4,9 +4,9 @@
 module typescriptApp {
     'use strict';
 
+    @Controller
     export class Page2Controller {
 		testProperty: string;
-
 
         /* @ngInject */
         constructor(public $log: angular.ILogService, $scope: angular.IScope, $timeout: angular.ITimeoutService) {
@@ -26,7 +26,4 @@ module typescriptApp {
 		}
 
     }
-
-	angular.module('typescriptApp')
-        .controller('Page2Controller', Page2Controller);
 }
