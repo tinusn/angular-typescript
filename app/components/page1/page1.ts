@@ -4,7 +4,6 @@
 module typescriptApp {
     'use strict';
 
-    @Controller
     export class Page1Controller {
 
         /* @ngInject */
@@ -20,4 +19,7 @@ module typescriptApp {
 		}
 
     }
+
+	angular.module('typescriptApp')
+        .controller('Page1Controller', Page1Controller);
 }

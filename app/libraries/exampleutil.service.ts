@@ -4,7 +4,6 @@
 module typescriptApp {
     'use strict';
 
-    @Service
     export class ExampleUtil {
         testProperty: string;
 
@@ -14,4 +13,8 @@ module typescriptApp {
         }
 
     }
+
+    angular.module('typescriptApp')
+        .service('ExampleUtil', ExampleUtil);
+
 }

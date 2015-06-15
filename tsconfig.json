@@ -9,8 +9,6 @@
 		"noResolve": false,
 		"out": "app.js",
 		"outDir": ".tmp/scripts",
-		"sourceMap": true,
-		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"sourceMap": true
 	}
 }

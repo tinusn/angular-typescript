@@ -83,7 +83,6 @@ var tsProject = ts.createProject({
     sortOutput: true,
     target: 'ES5',
     emitDecoratorMetadata: true,
-    experimentalDecorators: true,
     typescript: require('typescript')
 });
 

@@ -4,7 +4,6 @@
 module typescriptApp {
     'use strict';
 
-    @Controller
     export class ExampleController {
 		oneWay: any;
 		twoWay: any;
@@ -22,4 +21,7 @@ module typescriptApp {
 		}
 
     }
+
+	angular.module('typescriptApp')
+        .controller('ExampleController', ExampleController);
 }

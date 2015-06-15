@@ -4,7 +4,6 @@
 module typescriptApp {
     'use strict';
 
-    @Controller
     export class MainController {
 
         /* @ngInject */
@@ -18,4 +17,7 @@ module typescriptApp {
 			*/
         }
     }
+
+	angular.module('typescriptApp')
+        .controller('MainController', MainController);
 }
